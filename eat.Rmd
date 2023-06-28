@@ -78,3 +78,26 @@ With this chart we have 81% of white eating out. Black is at 70% while the other
 The group with white were eating out the most while black was second and other third.
 
 
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+```
+the low value is0.000002287 and a chi-squared 25.977
+
+
+```{r}
+fisherXY(mydata$race,mydata$eatout,printAll = TRUE)
+```
+
+The p value is greater than 0.05 and is lower for the group black. The white and black difference value is 2.2 eating out. Fisherxy is the analog and Tuki the HD. The odds between black and white groups 0 is 0.4 and 1.49 and 0 down the middle. The two methods are very similar to each other.
+
+
+#conclusion
+
+Today we learned how to FisherXX to get stata from GSS/Norc. We got to see the result of real world data of people eating out.
+
+
+
+
+
+
