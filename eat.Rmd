@@ -50,15 +50,31 @@ barchartGC(~race + eatout,data=mydata, type="percent")
 ```
 It appears that white people by percentage were eating out more often than black/other individuals. about %15
 more than compared to black. About %12 more than other.
-
+By frequency however, There is a massive difference between white and black/other. About a 800 person difference
 
 
 ```{r}
-barchartGC(~race + eatout,data=mydata)
-barchartGC(~race + eatout,data=mydata, type="percent")
+dd2 <- mydata %>% group_by(race,eatout) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
 
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd2,aes(x=race,y=count,fill=eatout))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=race,y=prcnt*100,fill=eatout)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
 ```
+The count to the left is by count while the table to the right is by percent. 
 
-
+```{r}
+table1 <- xtabs(~race + eatout, data=mydata)
+rowPerc(table1)
+colPerc(table1)
+```
+With this chart we have 81% of white eating out. Black is at 70% while the other is at 69%.
+The group with white were eating out the most while black was second and other third.
 
 
